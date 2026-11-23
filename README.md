@@ -8,9 +8,12 @@
 - Apache Maven 3.9 або новіший
 
 ```powershell
+chcp 65001
 ./mvnw.cmd clean test
 ./mvnw.cmd exec:java
 ```
+
+Для коректного показу українського тексту у Windows-консолі спочатку перемкніть її на UTF-8 командою `chcp 65001` або запускайте `run.bat`. `.mvn/jvm.config` також задає UTF-8 для JVM.
 
 За замовчуванням програма читає копію навчального CSV `src/main/resources/transactions.csv`. Щоб передати власний локальний файл або URL, можна виконати:
 
