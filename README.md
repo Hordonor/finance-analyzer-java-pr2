@@ -24,6 +24,14 @@ chcp 65001
 ./mvnw.cmd exec:java "-Dexec.args=https://informer.com.ua/dut/java/pr2.csv 01-2024"
 ```
 
+Для демонстрації читання й виведення транзакцій зі слайду 6 передай прапорець `--print-transactions`. Точний короткий CSV-приклад зі слайду 4 збережено як `src/main/resources/transactions-intro-example.csv`:
+
+```powershell
+./mvnw.cmd exec:java "-Dexec.args=src/main/resources/transactions-intro-example.csv 01-2024 --print-transactions"
+```
+
+Звичайний запуск залишає фінальний звіт у форматі слайду 16 без попереднього друку всіх рядків.
+
 Формат дати у CSV — `dd-MM-yyyy`; потрібний місяць передається як `MM-yyyy`. Очікуються три стовпці: дата, сума, категорія/опис. Заголовок `Дата,Сума,Категорія` необов'язковий. Значення категорії з комами підтримуються у подвійних лапках.
 
 ## Звіти

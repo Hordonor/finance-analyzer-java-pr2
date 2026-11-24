@@ -7,6 +7,7 @@ import ua.edu.dut.finance.report.TransactionReportGenerator;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -17,10 +18,20 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            List<Transaction> transactions = args.length > 0
-                    ? TransactionCSVReader.readTransactions(args[0])
+            boolean printTransactions = Arrays.asList(args).contains("--print-transactions");
+            String[] parameters = Arrays.stream(args)
+                    .filter(argument -> !argument.equals("--print-transactions"))
+                    .toArray(String[]::new);
+
+            List<Transaction> transactions = parameters.length > 0
+                    ? TransactionCSVReader.readTransactions(parameters[0])
                     : readBundledTransactions();
-            String monthYear = args.length > 1 ? args[1] : DEFAULT_MONTH;
+            String monthYear = parameters.length > 1 ? parameters[1] : DEFAULT_MONTH;
+
+            if (printTransactions) {
+                transactions.forEach(System.out::println);
+                System.out.println();
+            }
 
             TransactionReportGenerator.printBalanceReport(TransactionAnalyzer.calculateTotalBalance(transactions));
             TransactionReportGenerator.printTransactionsCountByMonth(monthYear,
