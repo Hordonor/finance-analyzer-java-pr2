@@ -31,4 +31,12 @@ class TransactionCSVReaderTest {
         assertEquals("Кав'ярня, \"Центр\"", transactions.get(0).getDescription());
         assertEquals(-25.0, transactions.get(0).getAmount());
     }
+
+    @Test
+    void formatsTransactionLikeThePresentation() {
+        Transaction transaction = new Transaction("05-12-2023", -450.0, "Сільпо");
+
+        assertEquals("Transaction{date='05-12-2023', amount=-450.0, description='Сільпо'}",
+                transaction.toString());
+    }
 }

@@ -16,7 +16,7 @@ public abstract class TransactionReportGenerator {
     }
 
     public static void printBalanceReport(double totalBalance) {
-        System.out.printf(Locale.ROOT, "Загальний баланс: %.2f грн%n", totalBalance);
+        System.out.println("Загальний баланс: " + totalBalance);
     }
 
     public static void printTransactionsCountByMonth(String monthYear, int count) {
@@ -29,8 +29,8 @@ public abstract class TransactionReportGenerator {
             System.out.println("Витрат не знайдено.");
             return;
         }
-        topExpenses.forEach(expense -> System.out.printf(Locale.ROOT, "%s: %.2f грн%n",
-                expense.getDescription(), expense.getAmount()));
+        topExpenses.forEach(expense -> System.out.println(
+                expense.getDescription() + ": " + expense.getAmount()));
     }
 
     public static void printExpensesByPeriodReport(String monthYear, List<Transaction> transactions) {
